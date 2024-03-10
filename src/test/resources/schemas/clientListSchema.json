@@ -8,13 +8,16 @@
       "lastName": {
         "type": "string"
       },
-      "gender": {
-        "type": "string"
-      },
       "country": {
         "type": "string"
       },
       "city": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "phone": {
         "type": "string"
       },
       "id": {
@@ -24,9 +27,10 @@
     "required": [
       "name",
       "lastName",
-      "gender",
       "country",
       "city",
+      "email",
+      "phone",
       "id"
     ]
   }

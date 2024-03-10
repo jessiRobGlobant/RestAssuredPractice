@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class BaseRequest {
     protected Response requestGet(String endpoint, Map<String, ?> headers) {
-        return RestAssured.given()
+        return RestAssured.given()//.log().all()
                           .contentType(Constants.VALUE_CONTENT_TYPE)
                           .headers(headers)
                           .when()

@@ -11,13 +11,19 @@ Feature: Client testing CRUD
       | Manuel | Munoz    | Man    | Colombia | Bogota | 1  |
     And validates the response with client JSON schema
 
-
   @smoke
   Scenario: Get the list of clients
     Given there are registered clients in the system
     When I send a GET request to view all the clients
     Then the response should have a status code of 200
     And validates the response with client list JSON schema
+
+  @smoke
+  Scenario: Get the List of Resources
+    Given there are registered resources in the system
+    When I send a GET request to view all the resources
+    Then the response should have a status code of 200
+    And validates the response with the resource list JSON schema
 
   @smoke
   Scenario: Create a new client

@@ -3,13 +3,14 @@ package com.testing.api.stepDefinitions;
 import com.testing.api.models.Client;
 import com.testing.api.requests.ClientRequest;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
+import org.junit.Assert;
 
 import java.util.List;
 
@@ -28,13 +29,12 @@ public class ClientSteps {
         Assert.assertEquals(response.statusCode(), 200);
 
         List<Client> clientList = clientRequest.getClientsEntity(response);
-        // If not registered users, create at least one
-        if (clientList.isEmpty()){
+        // If not registered at least 3 users, create them
+        for (int i = clientList.size();i<3; i++){
             response = clientRequest.createDefaultClient();
             logger.info(response.statusCode());
             Assert.assertEquals(response.statusCode(), 201);
         }
-
         logger.info("there are registered clients in the system");
     }
 
@@ -100,4 +100,19 @@ public class ClientSteps {
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("Successfully validated the response with client list JSON schema");
     }
+
+    @Given("there are registered resources in the system")
+    public void thereAreRegisteredResourcesInTheSystem() {
+        
+    }
+
+    @When("I send a GET request to view all the resources")
+    public void iSendAGETRequestToViewAllTheResources() {
+        
+    }
+
+    @And("validates the response with the resource list JSON schema")
+    public void validatesTheResponseWithTheResourceListJSONSchema() {
+    }
+
 }
