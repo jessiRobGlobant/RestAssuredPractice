@@ -20,8 +20,9 @@ public class ClientSteps {
     private final ClientRequest clientRequest = new ClientRequest();
 
     private Response response;
-    private Client   client;
+    private Client client;
 
+    // Given
     @Given("there are registered clients in the system")
     public void thereAreRegisteredClientsInTheSystem() {
         response = clientRequest.getClients();
@@ -43,6 +44,7 @@ public class ClientSteps {
         logger.info("I have a client with the following details:" + clientData);
     }
 
+    // When
     @When("I retrieve the details of the client with ID {string}")
     public void sendGETRequest(String clientId) {
         logger.info("I retrieve the details of the client with ID " + clientId);
@@ -69,6 +71,7 @@ public class ClientSteps {
         logger.info("I send a PUT request to update the client with ID " + requestBody + clientId);
     }
 
+    // Then
     @Then("the response should have a status code of {int}")
     public void theResponseShouldHaveAStatusCodeOf(int statusCode) {
         logger.info("the response should have a status code of " + statusCode);
@@ -99,20 +102,6 @@ public class ClientSteps {
         String path = "schemas/clientListSchema.json";
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("Successfully validated the response with client list JSON schema");
-    }
-
-    @Given("there are registered resources in the system")
-    public void thereAreRegisteredResourcesInTheSystem() {
-        
-    }
-
-    @When("I send a GET request to view all the resources")
-    public void iSendAGETRequestToViewAllTheResources() {
-        
-    }
-
-    @And("validates the response with the resource list JSON schema")
-    public void validatesTheResponseWithTheResourceListJSONSchema() {
     }
 
 }
