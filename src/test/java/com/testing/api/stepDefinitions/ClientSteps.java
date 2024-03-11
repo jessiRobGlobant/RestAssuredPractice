@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
 import java.util.List;
+import java.util.Map;
 
 public class ClientSteps {
     private static final Logger logger = LogManager.getLogger(ClientSteps.class);
@@ -41,7 +42,17 @@ public class ClientSteps {
 
     @Given("I have a client with the following details:")
     public void iHaveAClientWithTheFollowingDetails(DataTable clientData) {
-        logger.info("I have a client with the following details:" + clientData);
+        Map<String, String> clientDataMap = clientData.asMaps().get(0);
+        client = Client.builder()
+                .name(clientDataMap.get("Name"))
+                .lastName(clientDataMap.get("LastName"))
+                .country(clientDataMap.get("Country"))
+                .city(clientDataMap.get("City"))
+                .email(clientDataMap.get("Email"))
+                .phone(clientDataMap.get("Phone"))
+                .build();
+
+        logger.info("Client wrapped:" + client);
     }
 
     // When
@@ -58,6 +69,7 @@ public class ClientSteps {
 
     @When("I send a POST request to create a client")
     public void iSendAPOSTRequestToCreateAClient() {
+        response = clientRequest.createClient(client);
         logger.info("I send a POST request to create a client");
     }
 
@@ -85,11 +97,14 @@ public class ClientSteps {
 
     @Then("the response should include the details of the created client")
     public void theResponseShouldIncludeTheDetailsOfTheCreatedClient() {
+        Client new_client = clientRequest.getClientEntity(response);
+        new_client.setId(null);
+        Assert.assertEquals(client, new_client);
         logger.info("the response should include the details of the created client");
     }
 
-    @Then("validates the response with client JSON schema")
-    public void userValidatesResponseWithClientJSONSchema() {
+    @Then("validates the response with the client JSON schema")
+    public void userValidatesResponseWithTheClientJSONSchema() {
         logger.info("validates the response with client JSON schema");
         String path = "schemas/clientSchema.json";
         Assert.assertTrue(clientRequest.validateSchema(response, path));

@@ -12,10 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class ClientRequest extends BaseRequest {
-    private String endpoint;
+    private String endpoint = String.format(Constants.URL, Constants.CLIENTS_PATH);
 
     public Response getClients() {
-        endpoint = String.format(Constants.URL, Constants.CLIENTS_PATH);
         return requestGet(endpoint, createBaseHeaders());
     }
 
@@ -25,7 +24,6 @@ public class ClientRequest extends BaseRequest {
     }
 
     public Response createClient(Client client) {
-        endpoint = "";
         return requestPost(endpoint, createBaseHeaders(), client);
     }
 
