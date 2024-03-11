@@ -20,17 +20,17 @@ public class ResourceRequest extends BaseRequest {
     }
 
     public Response getResource(String resourceId) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL_WITH_PARAM, Constants.RESOURCES_PATH, resourceId);
         return requestGet(endpoint, createBaseHeaders());
     }
 
     public Response createResource(Resource resource) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL, Constants.RESOURCES_PATH);
         return requestPost(endpoint, createBaseHeaders(), resource);
     }
 
     public Response updateResource(Resource resource, String resourceId) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL_WITH_PARAM, Constants.RESOURCES_PATH, resourceId);
         return requestPut(endpoint, createBaseHeaders(), resource);
     }
 

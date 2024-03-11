@@ -20,7 +20,7 @@
       "tags": {
         "type": "string"
       },
-      "is_active": {
+      "active": {
         "type": "boolean"
       },
       "id": {
@@ -34,7 +34,7 @@
       "price",
       "description",
       "tags",
-      "is_active",
+      "active",
       "id"
     ]
   }

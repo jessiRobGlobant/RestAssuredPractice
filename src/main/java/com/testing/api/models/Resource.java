@@ -16,6 +16,6 @@ public class Resource {
     private Double price;
     private String description;
     private String tags;
-    private Boolean is_active;
+    private Boolean active;
     private String id;
 }

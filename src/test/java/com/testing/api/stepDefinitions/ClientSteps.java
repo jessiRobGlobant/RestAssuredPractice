@@ -3,7 +3,6 @@ package com.testing.api.stepDefinitions;
 import com.testing.api.models.Client;
 import com.testing.api.requests.ClientRequest;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,7 +14,7 @@ import org.junit.Assert;
 import java.util.List;
 import java.util.Map;
 
-public class ClientSteps {
+public class ClientSteps{
     private static final Logger logger = LogManager.getLogger(ClientSteps.class);
 
     private final ClientRequest clientRequest = new ClientRequest();
@@ -90,11 +89,6 @@ public class ClientSteps {
         Assert.assertEquals(statusCode, response.statusCode());
     }
 
-    @Then("the response should have the following details:")
-    public void theResponseShouldHaveTheFollowingDetails(DataTable expectedData) {
-        logger.info("the response should have the following details:" + expectedData);
-    }
-
     @Then("the response should include the details of the created client")
     public void theResponseShouldIncludeTheDetailsOfTheCreatedClient() {
         Client new_client = clientRequest.getClientEntity(response);
@@ -105,7 +99,6 @@ public class ClientSteps {
 
     @Then("validates the response with the client JSON schema")
     public void userValidatesResponseWithTheClientJSONSchema() {
-        logger.info("validates the response with client JSON schema");
         String path = "schemas/clientSchema.json";
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("successfully validated the response with client JSON schema");
@@ -113,7 +106,6 @@ public class ClientSteps {
 
     @Then("validates the response with the client list JSON schema")
     public void userValidatesResponseWithTheClientListJSONSchema() {
-        logger.info("validates the response with client list JSON schema");
         String path = "schemas/clientListSchema.json";
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("Successfully validated the response with client list JSON schema");
