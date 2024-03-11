@@ -10,7 +10,7 @@ import java.io.Reader;
 
 public class JsonFileReader {
     /**
-     * This method read a JSON file and deserialize the body into a Client object
+     * This method reads a JSON file and deserialize the body into a Client object
      *
      * @param jsonFileName json file location path
      *
@@ -28,7 +28,7 @@ public class JsonFileReader {
     }
 
     /**
-     * This method read a JSON file and deserialize the body into a Resource object
+     * This method reads a JSON file and deserialize the body into a Resource object
      *
      * @param jsonFileName json file location path
      *

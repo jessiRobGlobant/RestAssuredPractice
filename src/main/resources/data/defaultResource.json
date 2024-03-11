@@ -5,5 +5,5 @@
   "price": 20145.42,
   "description": "The headphones used for establishing new hearing experiences with old styles",
   "tags": "vintage",
-  "is_active": true
+  "active": true
 }

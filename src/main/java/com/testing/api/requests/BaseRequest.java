@@ -8,8 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaseRequest {
+    /**
+     * This is a function to create a Get request
+     * @param endpoint api url
+     * @param headers a map of headers
+     * @return Response
+     */
     protected Response requestGet(String endpoint, Map<String, ?> headers) {
-        return RestAssured.given()//.log().all()
+        return RestAssured.given()
                           .contentType(Constants.VALUE_CONTENT_TYPE)
                           .headers(headers)
                           .when()
@@ -17,7 +23,7 @@ public class BaseRequest {
     }
 
     /**
-     * This is a funtion to create a new element using rest assured
+     * This is a function to create a new element using rest assured
      * @param endpoint api url
      * @param headers a map of headers
      * @param body model object
@@ -32,6 +38,13 @@ public class BaseRequest {
                           .post(endpoint);
     }
 
+    /**
+     * This is a function to create a Put request
+     * @param endpoint api url
+     * @param headers a map of headers
+     * @param body model object
+     * @return Response
+     */
     protected Response requestPut(String endpoint, Map<String, ?> headers, Object body) {
         return RestAssured.given()
                           .contentType(Constants.VALUE_CONTENT_TYPE)
@@ -41,6 +54,12 @@ public class BaseRequest {
                           .put(endpoint);
     }
 
+    /**
+     * This is a function to create a delete request
+     * @param endpoint api url
+     * @param headers a map of headers
+     * @return Response
+     */
     protected Response requestDelete(String endpoint, Map<String, ?> headers) {
         return RestAssured.given()
                           .contentType(Constants.VALUE_CONTENT_TYPE)
@@ -49,6 +68,10 @@ public class BaseRequest {
                           .delete(endpoint);
     }
 
+    /**
+     * This is a function to create the base headers for the requests
+     * @return Response
+     */
     protected Map<String, String> createBaseHeaders() {
         Map<String, String> headers = new HashMap<>();
         headers.put(Constants.CONTENT_TYPE, Constants.VALUE_CONTENT_TYPE);
